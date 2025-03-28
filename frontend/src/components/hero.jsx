@@ -4,16 +4,23 @@ const Home = () => {
   return (
     <div className="bg-blue-100 min-h-screen">
       {/* Hero Section */}
-      <section className="relative flex flex-col items-center text-center py-20 px-4">
-        <h1 className="text-4xl md:text-5xl font-bold text-green-700">
-          Smart Waste Management for a Sustainable Future
-        </h1>
-        <p className="text-gray-700 mt-4 max-w-2xl text-lg">
-          Join us in making a difference with innovative waste solutions that reduce environmental impact.
-        </p>
-        <button className="mt-6 px-6 py-3 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700">
-          Get Started
-        </button>
+      <section className="relative flex flex-col items-center text-center py-20 px-4 bg-[url('/path-to-hero-image.jpg')] bg-cover bg-center">
+        <div className="bg-black bg-opacity-50 p-10 rounded-lg">
+          <h1 className="text-5xl md:text-6xl font-extrabold text-white drop-shadow-lg">
+            Revolutionizing Waste Management 🌍
+          </h1>
+          <p className="text-gray-200 mt-4 max-w-3xl text-lg drop-shadow-md">
+            Empowering communities with smart, sustainable, and technology-driven waste solutions to create a cleaner and greener future.
+          </p>
+          <div className="mt-6 flex space-x-4">
+            <button className="px-6 py-3 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700">
+              Get Started
+            </button>
+            <button className="px-6 py-3 bg-transparent border border-white text-white font-semibold rounded-lg hover:bg-white hover:text-green-700">
+              Learn More
+            </button>
+          </div>
+        </div>
       </section>
       
       {/* Features Section */}
