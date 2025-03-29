@@ -9,7 +9,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo on the left */}
           <div className="flex-shrink-0">
-            <span className="text-green-600 font-bold text-2xl">Waste Scape</span>
+            <span className="text-green-600 font-bold text-3xl">Waste Scape</span>
           </div>
 
           {/* Desktop Navigation Links & Login Button */}
