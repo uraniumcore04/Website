@@ -5,7 +5,7 @@ import vipul from "../assets/vipul.jpg";
 
 const teamMembers = [
   {
-    name: "Anurah Khanna",
+    name: "Anurag Khanna",
     role: "Founder & CEO",
     description:
       "Committed to revolutionizing waste management with innovative recycling and sustainability solutions.",
