@@ -15,7 +15,7 @@ const Hero = () => {
           transition={{ duration: 0.8 }}
         >
           <h1 className="text-4xl sm:text-5xl font-bold text-gray-800 leading-tight">
-          Building a  <span className="text-green-600">Tomorrow Cleaner</span>
+          Building a  <span className="text-blue-400">Tomorrow Cleaner</span>
           </h1>
           <motion.p 
             className="mt-4 text-lg text-gray-600"
@@ -33,13 +33,13 @@ const Hero = () => {
           >
             <a 
               href="#services" 
-              className="px-6 py-3 bg-green-600 text-white text-lg font-medium rounded-lg shadow-md hover:bg-green-700 transition"
+              className="px-6 py-3 bg-blue-400 text-white text-lg font-medium rounded-lg shadow-md hover:bg-blue-600 transition"
             >
               Get Started
             </a>
             <a 
               href="#about" 
-              className="px-6 py-3 border border-green-600 text-green-600 text-lg font-medium rounded-lg hover:bg-green-50 transition"
+              className="px-6 py-3 border border-blue-500 text-blue-400 text-lg font-medium rounded-lg hover:bg-blue-50 transition"
             >
               Learn More
             </a>

@@ -32,7 +32,7 @@ const About = () => {
             About <span className="text-green-600">Our Mission</span>
           </h2>
           <p className="mt-4 text-lg text-gray-600">
-            At <span className="font-semibold">Waste Scape</span>, we aim to redefine waste management through technology and innovation. Our goal is to reduce pollution, promote recycling, and build a cleaner future.
+            At <span className="font-semibold">M-CORE</span>, we aim to redefine waste management through technology and innovation. Our goal is to reduce pollution, promote recycling, and build a cleaner future.
           </p>
           <p className="mt-2 text-lg text-gray-600">
             By using smart waste disposal techniques and AI-driven insights, we ensure an efficient and eco-friendly waste management system.
@@ -40,7 +40,7 @@ const About = () => {
           <div className="mt-6">
             <a
               href="#services"
-              className="px-6 py-3 bg-green-600 text-white text-lg font-medium rounded-lg shadow-md hover:bg-green-700 transition"
+              className="px-6 py-3 bg-blue-400 text-white text-lg font-medium rounded-lg shadow-md hover:bg-blue-600 transition"
             >
               Learn More
             </a>

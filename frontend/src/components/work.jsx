@@ -44,7 +44,7 @@ const OurWork = () => {
     <section id="our-work" className="bg-gray-50 py-16 px-6 sm:px-12 lg:px-24">
       <div className="max-w-7xl mx-auto text-center">
         <h2 className="text-3xl sm:text-4xl font-bold text-gray-800">
-          Our <span className="text-green-600">Work</span>
+          Our <span className="text-blue-400">Work</span>
         </h2>
         <p className="mt-4 text-lg text-gray-600">
           We strive to make waste management smarter, greener, and more efficient.
