@@ -1,23 +1,22 @@
-import { useState } from 'react'
-import './App.css'
-import Navbar from './components/navbar'
-import Home from './components/hero'
-import Footer from './components/footer'
-import About from './components/About'
-import OurWork from './components/work'
+import "./App.css";
+import Navbar from "./components/navbar";
+import Home from "./components/hero";
+import Footer from "./components/footer";
+import About from "./components/About";
+import OurWork from "./components/work";
+import TeamSection from "./components/teamsection";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-<Navbar/>
-<Home/>
-<About/>
-<OurWork/>
-<Footer/>
+      <Navbar />
+      <Home />
+      <About />
+      <OurWork />
+      <TeamSection />
+      <Footer />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
