@@ -5,6 +5,7 @@ import Footer from "./components/footer";
 import About from "./components/About";
 import OurWork from "./components/work";
 import TeamSection from "./components/teamsection";
+import ContactForm from "./components/contact";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <About />
       <OurWork />
       <TeamSection />
+      <ContactForm/>
       <Footer />
     </>
   );

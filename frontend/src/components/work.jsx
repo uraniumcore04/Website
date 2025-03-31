@@ -7,6 +7,7 @@ import smart_bin_image from "../assets/smart_bin.jpg"; // New Image
 import ewaste_image from "../assets/ewaste.jpg"; // New Image
 
 const OurWork = () => {
+  
   const workItems = [
     {
       title: "Smart Waste Collection",
@@ -41,30 +42,35 @@ const OurWork = () => {
   ];
 
   return (
-    <section id="our-work" className="bg-gray-50 py-16 px-6 sm:px-12 lg:px-24">
-      <div className="max-w-7xl mx-auto text-center">
-        <h2 className="text-3xl sm:text-4xl font-bold text-gray-800">
-          Our <span className="text-blue-400">Work</span>
-        </h2>
-        <p className="mt-4 text-lg text-gray-600">
-          We strive to make waste management smarter, greener, and more efficient.
-        </p>
-      </div>
+    <div>
+      {/* Top decorative line */}
+      <div className="w-full h-1 bg-gradient-to-r from-blue-400 via-blue-200 to-blue-500 mb-8"></div>
 
-      <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-        {workItems.map((item, index) => (
-          <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
-            <div className="w-full h-60 flex items-center justify-center bg-gray-100">
-              <img src={item.image} alt={item.title} className="max-w-full max-h-full object-contain" />
+      <section id="our-work" className="bg-gray-50 py-16 px-6 sm:px-12 lg:px-24">
+        <div className="max-w-7xl mx-auto text-center">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-800">
+            Our <span className="text-blue-400">Work</span>
+          </h2>
+          <p className="mt-4 text-lg text-gray-600">
+            We strive to make waste management smarter, greener, and more efficient.
+          </p>
+        </div>
+
+        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+          {workItems.map((item, index) => (
+            <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
+              <div className="w-full h-60 flex items-center justify-center bg-gray-100">
+                <img src={item.image} alt={item.title} className="max-w-full max-h-full object-contain" />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-semibold text-gray-800">{item.title}</h3>
+                <p className="mt-2 text-gray-600">{item.description}</p>
+              </div>
             </div>
-            <div className="p-6">
-              <h3 className="text-xl font-semibold text-gray-800">{item.title}</h3>
-              <p className="mt-2 text-gray-600">{item.description}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </section>
+          ))}
+        </div>
+      </section>
+    </div>
   );
 };
 
