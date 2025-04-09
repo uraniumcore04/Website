@@ -3,6 +3,7 @@ import 'dotenv/config'
 import authRoutes from "./routes/auth/auth.js";
 import cookieParser from "cookie-parser";
 import mongoose from "mongoose";
+import path from "path";
 
 
 // Connect to database
@@ -16,6 +17,8 @@ mongoose
     .catch((err) => {
         console.log(err);
     });
+
+const __dirname = path.resolve();
 
 // Initialize app
 const app = express();
@@ -33,6 +36,11 @@ app.get('/', (req, res) => {
     res.json({ message: 'API is running...' });
 });
 
+app.use(express.static(path.join(__dirname,'/client/dist')))
+
+app.get('*',(req,res) => {
+    res.sendFile(path.join(__dirname,'client','dist','index.html'))
+})
 
 
 // Start server
