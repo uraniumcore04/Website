@@ -91,7 +91,7 @@ export default function Profile() {
                     <label htmlFor="imageInput" className="cursor-pointer">
                         <div className="relative">
                             <img
-                                src={formData.profilePicture || currentUser.photoURL || 'https://via.placeholder.com/100'}
+                                src={formData.profilePicture || currentUser.photoURL || "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"}
                                 alt="profile"
                                 className="h-24 w-24 rounded-full object-cover border-4 border-blue-500 hover:opacity-80 transition-opacity"
                             />
@@ -118,7 +118,7 @@ export default function Profile() {
                         type="text"
                         id="displayName"
                         placeholder="Username"
-                        defaultValue={currentUser.displayName || ''}
+                        defaultValue={currentUser.username || currentUser.displayName || ''}
                         onChange={handleChange}
                         className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />

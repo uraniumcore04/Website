@@ -124,9 +124,15 @@ const Navbar = () => {
                 </div>
               </div>
             ) : (
-              <Link to="/sign-in" className="ml-6 px-5 py-2.5 text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-600 transition-colors duration-300 shadow-sm hover:shadow transform hover:-translate-y-0.5">
-                Login / Sign Up
-              </Link>
+              <>
+                <Link to="/sign-in" className="ml-6 px-5 py-2.5 text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-600 transition-colors duration-300 shadow-sm hover:shadow transform hover:-translate-y-0.5">
+                  Login
+                </Link>
+
+                <Link to="/sign-up" className="ml-6 px-5 py-2.5 text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-600 transition-colors duration-300 shadow-sm hover:shadow transform hover:-translate-y-0.5">
+                  SignUp
+                </Link>
+              </>
             )}
           </div>
 
