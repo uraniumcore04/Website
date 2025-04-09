@@ -1,24 +1,26 @@
 import express from "express";
-import 'dotenv/config'
+import "dotenv/config";
 import authRoutes from "./routes/auth/auth.js";
 import cookieParser from "cookie-parser";
 import mongoose from "mongoose";
 import path from "path";
+import { fileURLToPath } from 'url';
 
+// Get directory name in ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Connect to database
 const url = process.env.MONGO_URI;
 
 mongoose
-    .connect(url)
-    .then(() => {
-        console.log("MongoDB Connected");
-    })
-    .catch((err) => {
-        console.log(err);
-    });
-
-const __dirname = path.resolve();
+  .connect(url)
+  .then(() => {
+    console.log("MongoDB Connected");
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 // Initialize app
 const app = express();
@@ -28,23 +30,21 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-// Routes
+// API Routes
 app.use("/api/auth", authRoutes);
 
-// Root route
-app.get('/', (req, res) => {
-    res.json({ message: 'API is running...' });
+// Serve static files from client build
+const clientPath = path.join(__dirname, '..', 'client', 'dist');
+
+app.use(express.static(clientPath));
+
+// Catch-all route for SPA - must be after API routes
+app.use((req, res) => {
+  res.sendFile(path.join(clientPath, 'index.html'));
 });
 
-app.use(express.static(path.join(__dirname,'/client/dist')))
-
-app.get('*',(req,res) => {
-    res.sendFile(path.join(__dirname,'client','dist','index.html'))
-})
-
-
 // Start server
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-}); 
+  console.log(`Server running on port ${PORT}`);
+});
