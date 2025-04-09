@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { auth } from '../firebase';
 import { useDispatch, useSelector } from 'react-redux';
 import { signInStart, signInSuccess, signInFailure } from '../redux/user/userSlice';
@@ -10,7 +10,6 @@ export default function SignIn() {
     email: '',
     password: '',
   });
-  const [isSignUp, setIsSignUp] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { loading, error } = useSelector((state) => state.user);
@@ -21,21 +20,15 @@ export default function SignIn() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!formData.email || !formData.password) {
+      return dispatch(signInFailure("All fields are required"));
+    }
+
     try {
       dispatch(signInStart());
 
-      if (isSignUp) {
-        // Sign up flow
-        const userCredential = await createUserWithEmailAndPassword(
-          auth,
-          formData.email,
-          formData.password
-        );
-        const user = userCredential.user;
-        dispatch(signInSuccess(user));
-        navigate('/');
-      } else {
-        // Sign in flow
+      // Try to sign in with Firebase first
+      try {
         const userCredential = await signInWithEmailAndPassword(
           auth,
           formData.email,
@@ -44,8 +37,54 @@ export default function SignIn() {
         const user = userCredential.user;
         dispatch(signInSuccess(user));
         navigate('/');
+        return;
+      } catch (firebaseError) {
+        console.error("Firebase auth error:", firebaseError);
+        // If Firebase auth fails, try the backend API
+      }
+
+      // Fallback to backend API authentication
+      const res = await fetch("/api/auth/signin", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: formData.email,
+          password: formData.password,
+        }),
+      });
+
+      // Check if response is ok before trying to parse JSON
+      if (!res.ok) {
+        // Try to get error message from response if possible
+        let errorMessage = "Authentication failed";
+        try {
+          const errorData = await res.json();
+          errorMessage = errorData.message || errorMessage;
+        } catch (error) {
+          console.error("Failed to parse error response:", error);
+          // If we can't parse JSON, use status text
+          errorMessage = res.statusText || errorMessage;
+        }
+        return dispatch(signInFailure(errorMessage));
+      }
+
+      // Try to parse JSON response
+      let data;
+      try {
+        data = await res.json();
+      } catch (error) {
+        console.error("Failed to parse JSON response:", error);
+        return dispatch(signInFailure("Server returned invalid response"));
+      }
+
+      if (data.success === false) {
+        dispatch(signInFailure(data.message));
+      } else {
+        dispatch(signInSuccess(data));
+        navigate("/");
       }
     } catch (error) {
+      console.error("Sign in error:", error);
       dispatch(signInFailure(error.message));
     }
   };
@@ -68,16 +107,16 @@ export default function SignIn() {
       <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-lg shadow-md">
         <div>
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            {isSignUp ? 'Create your account' : 'Sign in to your account'}
+            Sign in to your account
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
             Or{' '}
-            <button
+            <Link
+              to="/sign-up"
               className="font-medium text-blue-600 hover:text-blue-500"
-              onClick={() => setIsSignUp(!isSignUp)}
             >
-              {isSignUp ? 'sign in to your account' : 'create a new account'}
-            </button>
+              create a new account
+            </Link>
           </p>
         </div>
 
@@ -125,7 +164,7 @@ export default function SignIn() {
               disabled={loading}
               className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-70"
             >
-              {loading ? 'Loading...' : isSignUp ? 'Sign Up' : 'Sign In'}
+              {loading ? 'Loading...' : 'Sign In'}
             </button>
           </div>
         </form>
