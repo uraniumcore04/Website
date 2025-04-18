@@ -2,11 +2,11 @@
   "name": "website",
   "version": "1.0.0",
   "description": "A modern, responsive portfolio website built with React and Vite, featuring sections for Home, About, Work showcase, Team members, and Contact information.",
-  "main": "server.js",
+  "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon api/server.js",
-    "start": "node api/server.js",
+    "dev": "nodemon api/index.js",
+    "start": "node api/index.js",
     "build": "npm install && npm install --prefix client && npm run build --prefix client"
   },
   "keywords": [],
