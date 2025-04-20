@@ -1,6 +1,8 @@
 # M-Core Waste Management
 
 A modern, responsive waste management application built with React and Vite, featuring sections for Home, About, Work showcase, Team members, and Contact information.
+![image](https://github.com/user-attachments/assets/b8248617-2f44-4448-beee-f558c18e9b74)
+
 
 ## Technologies Used
 
